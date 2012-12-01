@@ -9,10 +9,22 @@ module FreshApi
 
     get '/directory' do
       content_type 'text/plain', :charset => 'utf-8'
-      html = open('https://github.com/freshshell/fresh/wiki/Directory')
-      directory = Directory.new
-      directory.load_github_wiki_page(html)
       directory.entries.map(&:to_s).join("\n")
+    end
+
+    private
+
+    def directory
+      html = settings.cache.get 'directory-html'
+      directory = Directory.new
+      if html
+        directory.load_github_wiki_page(html)
+      else
+        html = URI.parse('https://github.com/freshshell/fresh/wiki/Directory').read
+        directory.load_github_wiki_page(html)
+        settings.cache.set 'directory-html', html, 300
+      end
+      directory
     end
   end
 end
