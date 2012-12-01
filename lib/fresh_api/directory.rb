@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'set'
 
 module FreshApi
   class Directory
@@ -11,6 +12,30 @@ module FreshApi
         data.each do |key, value|
           send "#{key}=", value
         end
+      end
+
+      def terms
+        terms = Set.new
+
+        tokens = Shellwords.shellsplit self.code.to_s
+        if tokens.shift == 'fresh'
+          tokens.each do |token|
+            if token =~ /^(--[^=]+)(?:=(.+))?/
+              option_name, option_value = $1, $2
+              terms << option_name
+              if option_value
+                terms << File.basename(option_value).sub(/^\./, '')
+              end
+            else
+              terms << token
+              terms += token.split('/')
+            end
+          end
+        end
+
+        terms += self.description.to_s.split(/\W+/)
+
+        terms.to_a
       end
 
       def to_s
