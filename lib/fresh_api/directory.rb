@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'set'
+require 'shellwords'
 
 module FreshApi
   class Directory
