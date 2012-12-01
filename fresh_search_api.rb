@@ -4,8 +4,6 @@ require 'bundler'
 Bundler.require(:default, ENV['RACK_ENV'].to_sym)
 
 require 'open-uri'
-require 'sinatra/reloader' if Sinatra::Base.development?
-
 class FreshSearchApi < Sinatra::Base
   set :cache, Dalli::Client.new
 
