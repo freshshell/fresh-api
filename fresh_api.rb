@@ -4,7 +4,7 @@ require 'open-uri'
 require 'bundler'
 Bundler.require(:default, ENV['RACK_ENV'].to_sym)
 
-class FreshSearchApi < Sinatra::Base
+class FreshApi < Sinatra::Base
   set :cache, Dalli::Client.new
 
   get '/directory' do

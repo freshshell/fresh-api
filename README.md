@@ -1,4 +1,4 @@
-fresh search API
+fresh API
 ================
 
 To run the app locally:

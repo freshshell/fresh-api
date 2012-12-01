@@ -1,3 +1,3 @@
-require './fresh_search_api'
+require './fresh_api'
 
-run FreshSearchApi
+run FreshApi
