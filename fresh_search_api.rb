@@ -8,7 +8,7 @@ class FreshSearchApi < Sinatra::Base
   set :cache, Dalli::Client.new
 
   get '/' do
-    headers['Content-Type'] = 'text/plain'
+    content_type 'text/plain', :charset => 'utf-8'
     settings.cache.get('lines')
   end
 
