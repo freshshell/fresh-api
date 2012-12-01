@@ -7,7 +7,7 @@ Bundler.require(:default, ENV['RACK_ENV'].to_sym)
 class FreshSearchApi < Sinatra::Base
   set :cache, Dalli::Client.new
 
-  get '/' do
+  get '/directory' do
     content_type 'text/plain', :charset => 'utf-8'
     settings.cache.get('lines')
   end
