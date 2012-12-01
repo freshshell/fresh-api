@@ -35,6 +35,7 @@ module FreshApi
 
         terms += self.description.to_s.split(/\W+/)
 
+        terms.map!(&:downcase)
         terms.to_a
       end
 

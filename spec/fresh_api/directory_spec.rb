@@ -25,5 +25,10 @@ describe FreshApi::Directory::Entry do
       let(:options) { {:url => 'https://github.com/freshshell/dotfiles'} }
       its(:terms) { should =~ %w[] }
     end
+
+    describe 'unique lowercase terms' do
+      let(:options) { {:code => 'fresh FOO BAR BAZ', :description => 'Foo Bar'} }
+      its(:terms) { should =~ %w[foo bar baz] }
+    end
   end
 end
