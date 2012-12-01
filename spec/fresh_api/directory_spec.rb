@@ -44,9 +44,9 @@ describe FreshApi::Directory::Entry do
     let(:foo_bar) { entry 'foo', 'bar' }
 
     let :directory do
-     FreshApi::Directory.new.tap do |directory|
-       directory.entries = [foo, bar, baz, foo_bar]
-     end
+      FreshApi::Directory.new.tap do |directory|
+        directory.entries = [foo, bar, baz, foo_bar]
+      end
     end
 
     it 'matches all entries with no search term' do
