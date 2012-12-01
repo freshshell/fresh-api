@@ -3,7 +3,7 @@ require 'set'
 
 module FreshApi
   class Directory
-    attr_reader :entries
+    attr_accessor :entries
 
     class Entry
       attr_accessor :code, :description, :url
@@ -54,6 +54,17 @@ module FreshApi
         )
       end
       raise "No entries found." if @entries.empty?
+    end
+
+    def search(query)
+      query_terms = Shellwords.shellsplit(query.to_s).map(&:downcase)
+      self.entries.select do |entry|
+        query_terms.all? do |query_term|
+          entry.terms.any? do |entry_term|
+            entry_term.start_with?(query_term)
+          end
+        end
+      end
     end
   end
 end
