@@ -1,3 +1,6 @@
-require './fresh_api'
+ENV['RACK_ENV'] ||= 'development'
+require 'bundler/setup'
+$: << 'lib'
 
-run FreshApi
+require 'fresh_api/app'
+run FreshApi::App
