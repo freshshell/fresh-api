@@ -3,6 +3,7 @@ source :rubygems
 gem 'sinatra', :require => 'sinatra/base'
 gem 'nokogiri'
 gem 'dalli'
+gem 'thin'
 
 group :development do
   gem 'pry'
