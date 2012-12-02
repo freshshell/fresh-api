@@ -40,9 +40,6 @@ module FreshApi
         terms.to_a
       end
 
-      def to_s
-        "`#{code}` # #{description} - #{url}"
-      end
     end
 
     def load_github_wiki_page(html)

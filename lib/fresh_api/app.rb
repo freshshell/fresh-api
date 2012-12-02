@@ -9,7 +9,9 @@ module FreshApi
 
     get '/directory' do
       content_type 'text/plain', :charset => 'utf-8'
-      directory.search(params[:q]).map { |entry| "#{entry}\n" }.join
+      directory.search(params[:q]).map do |entry|
+        "# #{entry.description}\n# <#{entry.url}>\n#{entry.code}\n"
+      end.join("\n")
     end
 
     private
