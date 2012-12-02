@@ -18,8 +18,8 @@ describe FreshApi::Directory::Entry do
     end
 
     describe 'description' do
-      let(:options) { {:description => 'foo-bar, baz'} }
-      its(:terms) { should =~ %w[foo bar baz] }
+      let(:options) { {:description => 'foo-bar, baz (zsh)'} }
+      its(:terms) { should =~ %w[foo bar baz zsh] }
     end
 
     describe 'url' do
