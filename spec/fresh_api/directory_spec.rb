@@ -1,6 +1,38 @@
 require 'fresh_api/directory'
 require 'ostruct'
 
+describe FreshApi::Directory do
+  describe '#load_github_wiki_page' do
+    it 'errors if no entries are found' do
+      FreshApi::Directory::Entry.should_receive(:new).never
+      expect {
+        subject.load_github_wiki_page('blah')
+      }.to raise_error RuntimeError, /No entries found/
+    end
+
+    it 'extracts list items as entries' do
+      FreshApi::Directory::Entry.should_receive(:new).with(
+        :code => 'line 1',
+        :description => 'example 1',
+        :url => 'http://example.com/'
+      ).once.and_return('first')
+      FreshApi::Directory::Entry.should_receive(:new).with(
+        :code => 'line 2',
+        :description => 'example 2',
+        :url => 'http://example.com/'
+      ).once.and_return('second')
+
+      subject.load_github_wiki_page(<<-HTML)
+        <div id="wiki-body"><div class="markdown-body"><ul>
+        <li><code>line 1</code> - <a href="http://example.com/">example 1</a></li>
+        <li><code>line 2</code> - <a href="http://example.com/">example 2</a></li>
+        </ul></div></div>
+      HTML
+      subject.entries.should eq %w[first second]
+    end
+  end
+end
+
 describe FreshApi::Directory::Entry do
   describe '#terms' do
     subject { described_class.new options }
