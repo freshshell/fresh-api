@@ -45,10 +45,12 @@ module FreshApi
     def load_github_wiki_page(html)
       doc = Nokogiri::HTML(html)
       @entries = doc.css('#wiki-body .markdown-body li').map do |li|
+        code = li.at('code')
+        link = li.at('a')
         Entry.new(
-          :code => li.css('code').text,
-          :description => li.css('a').text,
-          :url => li.css('a').attr('href').value
+          :code => code.text,
+          :description => link.text,
+          :url => link.attr('href')
         )
       end
       raise "No entries found." if @entries.empty?

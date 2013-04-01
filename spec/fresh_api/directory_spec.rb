@@ -30,6 +30,35 @@ describe FreshApi::Directory do
       HTML
       subject.entries.should eq %w[first second]
     end
+
+    it 'extracts only the first URL' do
+      FreshApi::Directory::Entry.should_receive(:new).with(
+        :code => 'line',
+        :description => 'description',
+        :url => 'http://example.com/one'
+      ).once.and_return('first')
+
+      subject.load_github_wiki_page(<<-HTML)
+        <div id="wiki-body"><div class="markdown-body"><ul>
+        <li><code>line</code> - <a href="http://example.com/one">description</a> (from <a href="http://example.com/two">source</a> )</li>
+        </ul></div></div>
+      HTML
+    end
+
+    it 'extracts only the first code block' do
+      FreshApi::Directory::Entry.should_receive(:new).with(
+        :code => 'example line',
+        :description => 'description',
+        :url => 'http://example.com/'
+      ).once.and_return('first')
+
+      subject.load_github_wiki_page(<<-HTML)
+        <div id="wiki-body"><div class="markdown-body"><ul>
+        <li><code>example line</code> - <a href="http://example.com/">description</a> (I use this with <code>another line</code>)</li>
+        </ul></div></div>
+      HTML
+    end
+
   end
 end
 
