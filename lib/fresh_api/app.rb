@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'dalli'
+require 'memcachier'
 require 'open-uri'
 require 'fresh_api/directory'
 
