@@ -15,6 +15,15 @@ module FreshApi
       end.join("\n")
     end
 
+    get '/' do
+      redirect 'https://freshshell.com/'
+    end
+
+    not_found do
+      content_type 'text/plain', :charset => 'utf-8'
+      "Move along, nothing to see here.\n"
+    end
+
     private
 
     def directory
