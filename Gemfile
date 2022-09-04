@@ -6,7 +6,7 @@ gem 'sinatra', :require => 'sinatra/base'
 gem 'nokogiri'
 gem 'dalli'
 gem 'memcachier'
-gem 'thin'
+gem 'puma'
 
 group :development do
   gem 'pry'
