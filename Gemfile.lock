@@ -11,7 +11,7 @@ GEM
     memcachier (0.0.2)
     method_source (0.7.1)
     mini_portile2 (2.8.0)
-    mustermann (1.1.1)
+    mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.8)
     nokogiri (1.13.9)
@@ -24,8 +24,8 @@ GEM
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.0)
-    rack (2.2.3.1)
-    rack-protection (2.2.0)
+    rack (2.2.4)
+    rack-protection (2.2.3)
       rack
     rspec (2.11.0)
       rspec-core (~> 2.11.0)
@@ -38,13 +38,13 @@ GEM
     rspec-mocks (2.11.3)
     ruby-progressbar (0.0.10)
     ruby2_keywords (0.0.5)
-    sinatra (2.2.0)
-      mustermann (~> 1.0)
+    sinatra (2.2.3)
+      mustermann (~> 2.0)
       rack (~> 2.2)
-      rack-protection (= 2.2.0)
+      rack-protection (= 2.2.3)
       tilt (~> 2.0)
     slop (2.4.4)
-    tilt (2.0.10)
+    tilt (2.0.11)
 
 PLATFORMS
   ruby
