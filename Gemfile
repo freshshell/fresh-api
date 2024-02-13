@@ -7,6 +7,7 @@ gem 'nokogiri'
 gem 'dalli'
 gem 'memcachier'
 gem 'puma'
+gem 'base64'
 
 group :development do
   gem 'pry'
