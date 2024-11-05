@@ -8,6 +8,7 @@ gem 'dalli'
 gem 'memcachier'
 gem 'puma'
 gem 'base64'
+gem 'rackup'
 
 group :development do
   gem 'pry'
